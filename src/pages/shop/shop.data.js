@@ -49,7 +49,7 @@ const SHOP_DATA = [
       {
         id: 7,
         name: 'Red Beanie',
-        imageUrl: 'https://i.ibb.co/bLB646Z/red-beanie.png',
+        imageUrl: 'http://i.ibb.co/bLB646Z/red-beanie.png',
         // imageUrl: '/images/shop-img/hats/red-beanie.png',
         price: 18
       },
@@ -267,7 +267,7 @@ const SHOP_DATA = [
         id: 34,
         name: 'Jean Long Sleeve',
         imageUrl: 'https://i.ibb.co/VpW4x5t/roll-up-jean-shirt.png',
-        // imageUrl: '/images/shop-img/mens/roll-up-jean-shirt.png',
+        //imageUrl: '/images/shop-img/mens/roll-up-jean-shirt.png',
         price: 40
       },
       {
