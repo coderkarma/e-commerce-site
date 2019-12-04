@@ -17,10 +17,21 @@ class App extends Component {
 
   componentDidMount() {
     // open subscriptions
-    this.unSubcribeFromAuth = auth.onAuthStateChanged(async user => {
-      this.setState({ currentUser: user})
-      createUserProfileDocument(user);
-      // console.log(user)
+    this.unSubcribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        // getting the id and data of user
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+        });
+      }
+      // if user logsout set state to null
+      this.setState({ currentUser: userAuth });
     });
   }
 
