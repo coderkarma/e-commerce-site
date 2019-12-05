@@ -28,6 +28,8 @@ class App extends Component {
               ...snapShot.data()
             }
           });
+
+          console.log(this.state);
         });
       }
       // if user logsout set state to null
