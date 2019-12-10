@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import HomePage from './pages/home-page/HomePage';
 import ShopPage from './pages/shop/Shop';
 import Header from './components/header/Header';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/SignInAndSignUp';
+import CheckOut from './pages/checkout/CheckOut';
+
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.action';
 
+
 import './App.css';
+import { selectCurrentUser } from './redux/user/user.selector';
 
 class App extends Component {
   unSubscribeFromAuth = null;
@@ -45,6 +51,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
+          <Route exact path='/checkout' component={CheckOut} />
           <Route
             exact
             path='/signin'
@@ -57,10 +64,10 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
-// Don't need any state to props from reducer, just pass null
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
