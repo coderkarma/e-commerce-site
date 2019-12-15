@@ -7,6 +7,7 @@ import { selectCollection } from '../../redux/shop/shop.selectors';
 import './CollectionPage.scss';
 
 const CollectionPage = ({ collection }) => {
+  console.log("collection", collection )
   const { title, items } = collection;
 
   return (
