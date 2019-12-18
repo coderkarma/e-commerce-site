@@ -10,22 +10,23 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up/SignInAndSignUp';
 import CheckOut from './pages/checkout/CheckOut';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { setCurrentUser } from './redux/user/user.action';
-
 
 import './App.css';
 import { selectCurrentUser } from './redux/user/user.selector';
+import { setCurrentUser } from './redux/user/user.action';
 
 class App extends Component {
   unSubscribeFromAuth = null;
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
+
     // open subscriptions
     this.unSubcribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         // getting the id and data of user
+        // onSnapshot listener
         userRef.onSnapshot(snapShot => {
           setCurrentUser({
             currentUser: {
