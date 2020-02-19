@@ -22,22 +22,22 @@ class App extends Component {
     const { setCurrentUser } = this.props;
 
     // open subscriptions
-    this.unSubcribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        // getting the id and data of user
-        // onSnapshot listener
-        userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
-          });
-        });
-      }
-      // if user logsout set state to null
-      setCurrentUser(userAuth);
+    // this.unSubcribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
+    //     // getting the id and data of user
+    //     // onSnapshot listener
+    //     userRef.onSnapshot(snapShot => {
+    //       setCurrentUser({
+    //         currentUser: {
+    //           id: snapShot.id,
+    //           ...snapShot.data()
+    //         }
+    //       });
+    //     });
+    //   }
+    //   // if user logsout set state to null
+    //   setCurrentUser(userAuth);
     });
   }
 
